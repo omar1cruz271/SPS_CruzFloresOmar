@@ -1,0 +1,26 @@
+.fixed-top{
+    background-color: #6C1D45;
+}
+
+#sect1{
+color: white;
+}
+#sect2{
+    color: white;
+}
+body{
+    background-color: #6C1D45;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    }
+    /*  Este es para el elemento activo lo puedes omitir si asi deseas */
+.navbar-light .navbar-nav .active.nav-link  {
+     color: white;
+    }
+.navbar-light .navbar-brand {
+    font-family: 'Courier New', Courier, monospace;
+    
+    color: white;
+    align-items: center;
+    }

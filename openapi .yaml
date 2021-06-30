@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info: 
+  title: Cifrador de imagenes con AES y diversos modos de operación
+  description: Es una API que maneja bytes de entrada correspondientes a una imagen y los cifra para que su visualización no sea legible, en diversos modos de operación
+  version: 1.0.0
+  
+servers:
+- url: http://127.0.0.1:5000/api/sps/helloworld/v1/AES/
+  description: Muestra las acciones que se quieren realizar (cifrar o descifrar)
+  
+paths: 
+  /:
+    get:
+      summary: muestra un listado de dos opciones "cifrar" y "descifrar"
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    action: 
+                      type: array
+                      items:
+                        type: string
+                        
+                      
+                      example: ["cifrar", "descifrar"]
+        '404':
+          description: No se reconoce la acción que se desea ejecutar
+  /{action}:
+    get:
+      summary: Según el parametro que corresponda a la acción se genera una lista de opciones, dependiendo si es cifrar o descifrar, se muestran todos los modos de opeación
+      parameters:
+      - name: action
+        in: path
+        required: true
+        description: La acción depende si el usuario de la API requiere cifrar o descifrar valores, no acepta otros elementos que no sea la palabra "cifrar" o "descifrar"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok, se ha seleccionado {action}
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    modos: 
+                      type: array
+                      items:
+                        type: string
+                        
+                      
+                      example: ["CBC", "ECB", "OFB"]
+        '404':
+          description: No se reconoce la acción que se desea ejecutar
+          
+  /{action}/{mode}:
+    get:
+      summary: Según el modo de operación que se seleccione y si se seleccionó en un inicio cifrar o descrifrar abre una ventana correspondiente al formulario que requiere el modo de operación seleccionado
+      parameters:
+      - name: action
+        in: path
+        required: true
+        description: el parametro depende si el usuario de la API requiere cifrar o descifrar valores, esto lo selecciona en el server inicial y los valores aquí solo pueden ser "cifrar" o "descifrar"
+        schema:
+          type: string
+      - name: mode
+        in: path
+        required: true
+        description: El parametro mode indica sobre qué modo de operación va a trabajar la API (CBC, ECB, OFB, CFB)
+        schema:
+          type: string
+        
+      responses:
+        '200':
+          description: Ok, inserta la imagen, la llave y en dado caso el vector de inicialización.
+          content:
+             application/json:
+              schema:
+                type: object
+                properties:
+                  modo: 
+                    type: string
+                    example: "CBC"
+                  accion:
+                    type: string
+                    example: "cifrar"
+        '404':
+          description: No se reconoce el modo de operación que se introdujo
+        '405':
+          description: No se reconoce la acción (cifrar o descifrar)
+    post: 
+      summary: Crear nueva imagen cifrada con el modo de operación CBC
+      description: Este endpoint se encarga de recibir los bytes de entrada de la imagen, el vector de inicialización de 16 bits y una llave de 16 bits también
+      parameters:
+      - name: action
+        in: path
+        required: true
+        description: el parametro depende si el usuario de la API requiere cifrar o descifrar valores, esto lo selecciona en el server inicial y los valores aquí solo pueden ser "cifrar" o "descifrar"
+        schema:
+          type: string
+      - name: mode
+        in: path
+        required: true
+        description: El parametro mode indica sobre qué modo de operación va a trabajar la API (CBC, ECB, OFB, CFB)
+        schema:
+          type: string
+      
+      responses:
+        '200':
+          description: Ok, se ha cifrado la imagen con CBC
+          content:
+             application/json:
+              schema:
+                type: object
+                properties:
+                  action: 
+                    type: string
+                    example: "Encrypt"
+                  ruta:
+                    type: string
+                    example: "imagen_eCBC.BMP"
+        '404':
+          description: ocurrió un error con el tamaño del vector
+        '405':
+          description: ocurrió un error con el tamaño de la llave
+        '406':
+          description: ocurrió un error al momento de cifrar
+ 

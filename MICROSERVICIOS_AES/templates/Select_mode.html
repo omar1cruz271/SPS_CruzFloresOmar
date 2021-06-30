@@ -1,0 +1,93 @@
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block content %}
+ <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Cryptography</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="#">Index</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/mujer">Crypt</a>
+            <a class="nav-link" href="#">Decrypt</a>
+          </nav>
+        </div>
+      </header>
+     {% if action["action"]=="cifrar" %}
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Select a option.</h1>
+        <p class="lead">Mode of operation</p>
+        <p class="lead">
+        <i class="fas fa-lock"></i>
+          <a href="http://127.0.0.1:5000/api/sps/helloworld/v1/AES/cifrar/CBC" class="btn btn-lg btn-primary">CBC</a>
+         <br><br>
+        <i class="fas fa-lock"></i>
+          <a href="http://127.0.0.1:5000/api/sps/helloworld/v1/AES/cifrar/ECB" class="btn btn-lg btn-danger">ECB</a>
+         <br><br>
+        <i class="fas fa-lock"></i>
+          <a href="http://127.0.0.1:5000/api/sps/helloworld/v1/AES/cifrar/OFB" class="btn btn-lg btn-warning">OFB</a>
+         <br><br>
+
+        </p>
+
+      </main>
+     {% endif %}
+     {% if action["action"]=="descifrar" %}
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Select a option.</h1>
+        <p class="lead">Mode of operation</p>
+        <p class="lead">
+        <i class="fas fa-lock"></i>
+          <a href="http://127.0.0.1:5000/api/sps/helloworld/v1/AES/descifrar/CBC" class="btn btn-lg btn-primary">CBC</a>
+         <br><br>
+        <i class="fas fa-lock"></i>
+          <a href="http://127.0.0.1:5000/api/sps/helloworld/v1/AES/descifrar/ECB" class="btn btn-lg btn-danger">ECB</a>
+         <br><br>
+        <i class="fas fa-lock"></i>
+          <a href="http://127.0.0.1:5000/api/sps/helloworld/v1/AES/descifrar/OFB" class="btn btn-lg btn-warning">OFB</a>
+         <br><br>
+
+
+
+        </p>
+
+      </main>
+     {% endif %}
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Practice 2 by <a href="https://getbootstrap.com/">Omar Cruz</a>, by <a href="https://twitter.com/mdo">correo@gmail.com</a>.</p>
+        </div>
+      </footer>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
+  
+<script src="{{url_for('static',filename='bootstrap-4.5.3-dist/js/bootstrap.min.js')}}"></script>
+<link rel="stylesheet" href="{{url_for('static',filename='fontawesome/js/all.js')}}" >
+<script>
+function myfunction(){
+confirm("Se está analizando la topología, espera...");
+}
+</script>
+
+{% endblock %}
+{% block styles %}
+
+<link rel="stylesheet" href="{{url_for('static',filename='bootstrap-4.5.3-dist/css/bootstrap.min.css')}}" >
+
+<link rel="stylesheet" href="{{url_for('static',filename='fontawesome/css/all.css')}}" >
+<link rel="stylesheet" href="{{url_for('static',filename='cover.css')}}" >
+
+{% endblock %}
+
+

@@ -1,0 +1,61 @@
+#titulo{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 100px;
+    color: white;
+    align-items: left;
+  
+}
+#tf{
+
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+  align-items: left;
+
+}
+#container1{
+    padding: 2%;
+    text-align: center;
+    background-color: transparent;
+    border-radius: 60px;
+    margin-top: 50px;
+  }
+  
+.btn-4{
+    border: 2px dashed rgb(250, 185, 44);
+    height: 100px;
+    color: rgba(187, 108, 19, 0.74);
+    background-color: chocolate;
+    
+}
+#btnEnv{
+  width: 200px;
+}
+#bodyEres{
+   background-image: url(../img/fondoB.jpg);  
+    display: flex;
+    width: 100%;
+    background-size: cover;
+    position: relative;
+    
+  }
+  #bodyEres:before{
+      content: "";
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      position: absolute;
+      opacity: 0.6;
+  }
+#iconoA{
+  color:  white;
+}
+#iconoE{
+  color:  white;
+}
+.container, h1, h4, .row{
+      position: relative;
+}
+p{
+  color: white;
+}
